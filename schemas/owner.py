@@ -1,0 +1,22 @@
+from pydantic import BaseModel
+from schemas.vehicle import Vehicle
+
+
+class OwnerBase(BaseModel):
+    firstName: str
+    lastName: str
+    email: str
+    gender: str
+    dob: str
+
+
+class OwnerCreate(OwnerBase):
+    pass
+
+
+class Owner(OwnerBase):
+    id: int
+    vehicles: list[Vehicle] = []
+
+    class Config:
+        orm_mode = True
