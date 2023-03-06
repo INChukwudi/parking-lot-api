@@ -12,6 +12,8 @@ class Owner(Base):
     email = Column(String, nullable=False, index=True)
     password = Column(String, nullable=False)
     gender = Column(String, nullable=False)
+    passport = Column(String, nullable=False)
+    qr_code = Column(String, nullable=False)
     dob = Column(Date, nullable=False)
 
     vehicles = relationship("Vehicle", back_populates="owners")

@@ -8,6 +8,8 @@ class OwnerBase(BaseModel):
     email: str
     gender: str
     dob: str
+    passport: str
+    qr_code: str
 
 
 class OwnerCreate(OwnerBase):

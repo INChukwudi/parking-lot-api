@@ -10,7 +10,7 @@ class Vehicle(Base):
     manufacturer = Column(String, nullable=False, index=True)
     model = Column(String, nullable=False)
     year = Column(Integer, nullable=False)
-    numberPlate = Column(String, nullable=False, index=True)
+    number_plate = Column(String, nullable=False, index=True)
 
     owners = relationship("Owner", back_populates="vehicles")
     centre = relationship("Centre", back_populates="vehicles")
