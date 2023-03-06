@@ -7,7 +7,7 @@ def find_admin_by_id(db: Session, admin_id: int):
 
 
 def find_admin_by_email(db: Session, email: str):
-    return db.query(Admin).filter(Admin.number_plate == email).first()
+    return db.query(Admin).filter(Admin.email == email).first()
 
 
 def find_admins(db: Session, skip: int = 0, limit: int = 100):
