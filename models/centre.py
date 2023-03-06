@@ -9,7 +9,7 @@ class Centre(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False, index=True)
-    address = Column(String, nullable=False)
+    address = Column(String, nullable=False, index=True)
     capacity = Column(Integer, nullable=False)
     created_at = Column(Date, nullable=False, default=date.today())
 
