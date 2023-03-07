@@ -12,13 +12,13 @@ class VehicleBase(BaseModel):
 
 
 class VehicleCreate(VehicleBase):
-    pass
+    centre_id: str
+    owner_id: str
 
 
 class Vehicle(VehicleBase):
     id: int
     centre_id: int
-    owners: list[Owner] = []
 
     class Config:
         orm_mode = True

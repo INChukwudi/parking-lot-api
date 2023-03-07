@@ -13,7 +13,7 @@ class OwnerBase(BaseModel):
 
 
 class OwnerCreate(OwnerBase):
-    pass
+    password: str
 
 
 class Owner(OwnerBase):

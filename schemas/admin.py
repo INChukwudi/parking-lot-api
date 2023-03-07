@@ -10,7 +10,8 @@ class AdminBase(BaseModel):
 
 
 class AdminCreate(AdminBase):
-    pass
+    password: str
+    centre_id: str
 
 
 class Admin(AdminBase):

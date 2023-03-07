@@ -12,5 +12,4 @@ class Vehicle(Base):
     year = Column(Integer, nullable=False)
     number_plate = Column(String, nullable=False, index=True)
 
-    owners = relationship("Owner", back_populates="vehicles")
     centre = relationship("Centre", back_populates="vehicles")

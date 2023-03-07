@@ -1,6 +1,5 @@
 from database.config import Base
 from sqlalchemy import Column, Integer, String, Date
-from sqlalchemy.orm import relationship
 
 
 class Owner(Base):
@@ -13,7 +12,6 @@ class Owner(Base):
     password = Column(String, nullable=False)
     gender = Column(String, nullable=False)
     passport = Column(String, nullable=False)
-    qr_code = Column(String, nullable=False)
+    qr_code = Column(String, default="")
     dob = Column(Date, nullable=False)
 
-    vehicles = relationship("Vehicle", back_populates="owners")
