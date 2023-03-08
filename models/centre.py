@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 
 
 class Centre(Base):
-    __tablename__ = "centre"
+    __tablename__ = "centres"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False, index=True)
@@ -14,4 +14,3 @@ class Centre(Base):
     created_at = Column(Date, nullable=False, default=date.today())
 
     admins = relationship("Admin", back_populates="centre")
-    vehicles = relationship("Vehicle", back_populates="centre")

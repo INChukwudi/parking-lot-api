@@ -15,7 +15,7 @@ def find_vehicle_by_number_plate(db: Session, number_plate: str):
 
 
 def find_vehicle_by_manufacturer(db: Session, manufacturer: str):
-    return db.query(Vehicle).filter(Vehicle.manufacturer == manufacturer).first()
+    return db.query(Vehicle).filter(Vehicle.manufacturer == manufacturer).all()
 
 
 def find_vehicles(db: Session, skip: int = 0, limit: int = 100):
@@ -30,7 +30,8 @@ def create_vehicle(db: Session, vehicle: VehicleCreate):
     db.refresh(db_vehicle)
 
     assignment = OwnerVehicleAssignmentCreate(vehicle_id=db_vehicle.id, owner_id=vehicle.owner_id)
-    return assign_owner_to_vehicle(db, assignment)
+    assign_owner_to_vehicle(db, assignment)
+    return db_vehicle
 
 
 def assign_owner_to_vehicle(db: Session, assignment: OwnerVehicleAssignmentCreate):

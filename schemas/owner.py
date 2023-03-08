@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from schemas.vehicle import Vehicle
 
 
 class OwnerBase(BaseModel):
@@ -18,7 +17,6 @@ class OwnerCreate(OwnerBase):
 
 class Owner(OwnerBase):
     id: int
-    vehicles: list[Vehicle] = []
 
     class Config:
         orm_mode = True

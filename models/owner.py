@@ -8,7 +8,7 @@ class Owner(Base):
     id = Column(Integer, primary_key=True, index=True)
     firstName = Column(String, nullable=False)
     lastName = Column(String, nullable=False)
-    email = Column(String, nullable=False, index=True)
+    email = Column(String, nullable=False, index=True, unique=True)
     password = Column(String, nullable=False)
     gender = Column(String, nullable=False)
     passport = Column(String, nullable=False)
