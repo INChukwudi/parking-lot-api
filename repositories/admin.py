@@ -2,6 +2,7 @@ from models.admin import Admin
 from sqlalchemy.orm import Session
 
 from schemas.admin import AdminCreate
+from utils.pwd_context import get_password_hash
 
 
 def find_admin_by_id(db: Session, admin_id: int):
@@ -17,7 +18,8 @@ def find_admins(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_admin(db: Session, admin: AdminCreate):
-    db_admin = Admin(firstName=admin.firstName, lastName=admin.lastName, email=admin.email, password=admin.password,
+    password_hash = get_password_hash(admin.password)
+    db_admin = Admin(firstName=admin.firstName, lastName=admin.lastName, email=admin.email, password=password_hash,
                      level=admin.level, centre_id=admin.centre_id)
     db.add(db_admin)
     db.commit()
