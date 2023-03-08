@@ -1,4 +1,4 @@
-from models.ownerVehicleAssignment import OwnerVehicleAssignment
+from models.owner_vehicle_assignment import OwnerVehicleAssignment
 from models.vehicle import Vehicle
 from sqlalchemy.orm import Session
 
