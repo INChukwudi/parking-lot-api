@@ -5,13 +5,12 @@ class AdminBase(BaseModel):
     firstName: str
     lastName: str
     email: str
-    centreId: int
     level: int
 
 
 class AdminCreate(AdminBase):
     password: str
-    centre_id: str
+    centre_id: int
 
 
 class Admin(AdminBase):
