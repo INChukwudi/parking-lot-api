@@ -1,7 +1,5 @@
 from pydantic import BaseModel
 
-from schemas.owner import Owner
-
 
 class VehicleBase(BaseModel):
     manufacturer: str

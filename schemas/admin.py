@@ -10,7 +10,7 @@ class AdminBase(BaseModel):
 
 class AdminCreate(AdminBase):
     password: str
-    centre_id: int
+    centre_id: int | None = None
 
 
 class Admin(AdminBase):
