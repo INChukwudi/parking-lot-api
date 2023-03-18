@@ -3,3 +3,5 @@ database/parking_lot.db
 parking_lot.db
 __pycache__
 */__pycache__
+.space
+Spacefile

@@ -9,7 +9,7 @@ class Owner(Base):
     firstName = Column(String, nullable=False)
     lastName = Column(String, nullable=False)
     email = Column(String, nullable=False, index=True, unique=True)
-    password = Column(String, nullable=False)
+    passport = Column(String, nullable=False)
     gender = Column(String, nullable=False)
     qr_code = Column(String, default="")
     dob = Column(Date, nullable=False)

@@ -1,3 +1,6 @@
+from datetime import datetime, date
+from typing import Union
+
 from pydantic import BaseModel
 
 
@@ -6,7 +9,7 @@ class OwnerBase(BaseModel):
     lastName: str
     email: str
     gender: str
-    dob: str
+    dob: Union[str | date]
     passport: str
     qr_code: str
 
