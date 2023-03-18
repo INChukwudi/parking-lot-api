@@ -31,9 +31,9 @@ def get_vehicle(vehicle_id: int, db: Session = Depends(get_db)):
 
 @router.post("/", response_model=Vehicle)
 def create_vehicle(vehicle_create: VehicleCreate, db: Session = Depends(get_db)):
-    db_vehicle = vehicle.find_vehicle_by_number_plate(db, number_plate=vehicle_create.numberPlate)
+    db_vehicle = vehicle.find_vehicle_by_number_plate(db, number_plate=vehicle_create.number_plate)
     if db_vehicle:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail=f"Vehicle with number plate {vehicle_create.numberPlate} already exists")
+                            detail=f"Vehicle with number plate {vehicle_create.number_plate} already exists")
     return vehicle.create_vehicle(db, vehicle_create)
 

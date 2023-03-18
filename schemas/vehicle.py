@@ -5,18 +5,17 @@ class VehicleBase(BaseModel):
     manufacturer: str
     model: str
     year: int
-    numberPlate: str
-    kind: str
+    number_plate: str
 
 
 class VehicleCreate(VehicleBase):
-    centre_id: str
-    owner_id: str
+    owner_id: int
+    centre_id: int
 
 
 class Vehicle(VehicleBase):
     id: int
-    centre_id: int
+    # centre_id: int
 
     class Config:
         orm_mode = True
