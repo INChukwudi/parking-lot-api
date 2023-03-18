@@ -18,8 +18,9 @@ def find_owners(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_owner(db: Session, owner: OwnerCreate):
+    password_hash = get_password_hash(owner.password)
     db_owner = Owner(firstName=owner.firstName, lastName=owner.lastName, email=owner.email, dob=owner.dob,
-                     gender=owner.gender, passport=owner.passport)
+                     gender=owner.gender, passport=owner.passport, password=password_hash)
     db.add(db_owner)
     db.commit()
     db.refresh(db_owner)
