@@ -14,3 +14,4 @@ class Centre(Base):
     created_at = Column(Date, nullable=False, default=date.today())
 
     admins = relationship("Admin", back_populates="centre")
+    assignments = relationship("OwnerVehicleAssignment", back_populates="centre")

@@ -2,7 +2,7 @@ from models.owner_vehicle_assignment import OwnerVehicleAssignment
 from models.vehicle import Vehicle
 from sqlalchemy.orm import Session
 
-from schemas.ownerVehicleAssignmentCreate import OwnerVehicleAssignmentCreate
+from schemas.owner_vehicle_assignment import OwnerVehicleAssignmentCreate
 from schemas.vehicle import VehicleCreate
 
 
@@ -23,13 +23,14 @@ def find_vehicles(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_vehicle(db: Session, vehicle: VehicleCreate):
-    db_vehicle = Vehicle(manufacturer=vehicle.manufacturer, model=vehicle.model, centre_id=vehicle.centre_id,
-                         year=vehicle.year, number_plate=vehicle.numberPlate)
+    db_vehicle = Vehicle(manufacturer=vehicle.manufacturer, model=vehicle.model, year=vehicle.year,
+                         number_plate=vehicle.number_plate)
     db.add(db_vehicle)
     db.commit()
     db.refresh(db_vehicle)
 
-    assignment = OwnerVehicleAssignmentCreate(vehicle_id=db_vehicle.id, owner_id=vehicle.owner_id)
+    assignment = OwnerVehicleAssignmentCreate(vehicle_id=db_vehicle.id, owner_id=vehicle.owner_id,
+                                              centre_id=vehicle.centre_id)
     assign_owner_to_vehicle(db, assignment)
     return db_vehicle
 

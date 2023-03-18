@@ -12,3 +12,4 @@ class Vehicle(Base):
     year = Column(Integer, nullable=False)
     number_plate = Column(String, nullable=False, index=True, unique=True)
 
+    assignments = relationship("OwnerVehicleAssignment", back_populates="vehicle")
