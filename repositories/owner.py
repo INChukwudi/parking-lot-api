@@ -4,6 +4,7 @@ from models.owner import Owner
 from sqlalchemy.orm import Session
 
 from schemas.owner import OwnerCreate
+from utils.pwd_context import get_password_hash
 
 
 def find_owner_by_id(db: Session, owner_id: int):
