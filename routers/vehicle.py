@@ -7,10 +7,12 @@ from starlette import status
 from database.config import get_db
 from repositories import vehicle
 from schemas.vehicle import Vehicle, VehicleCreate
+from utils.oauth2 import get_current_user
 
 router = APIRouter(
     prefix="/vehicle",
-    tags=["Vehicles"]
+    tags=["Vehicles"],
+    dependencies=[Depends(get_current_user)]
 )
 
 

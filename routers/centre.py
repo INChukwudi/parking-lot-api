@@ -7,10 +7,12 @@ from starlette import status
 from database.config import get_db
 from repositories import centre
 from schemas.centre import Centre, CentreCreate
+from utils.oauth2 import get_current_user
 
 router = APIRouter(
     prefix="/centre",
-    tags=["Centres"]
+    tags=["Centres"],
+    dependencies=[Depends(get_current_user)]
 )
 
 

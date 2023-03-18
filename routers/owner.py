@@ -7,10 +7,12 @@ from starlette import status
 from database.config import get_db
 from repositories import owner
 from schemas.owner import Owner, OwnerCreate
+from utils.oauth2 import get_current_user
 
 router = APIRouter(
     prefix="/owner",
-    tags=["Owners"]
+    tags=["Owners"],
+    dependencies=[Depends(get_current_user)]
 )
 
 
