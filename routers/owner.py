@@ -31,7 +31,7 @@ def get_owner(owner_id: int, db: Session = Depends(get_db)):
 
 @router.post("/", response_model=Owner)
 def create_owner(owner_create: OwnerCreate, db: Session = Depends(get_db)):
-    db_owner = owner.find_owner_by_email(db, email=owner_create.email)
+    db_owner = owner.find_owner_by_email(db, email=owner_create.email.lower())
     if db_owner:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email is in use")
     return owner.create_owner(db, owner_create)

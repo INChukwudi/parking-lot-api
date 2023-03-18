@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from models.owner import Owner
 from sqlalchemy.orm import Session
 
@@ -18,9 +20,9 @@ def find_owners(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_owner(db: Session, owner: OwnerCreate):
-    password_hash = get_password_hash(owner.password)
-    db_owner = Owner(firstName=owner.firstName, lastName=owner.lastName, email=owner.email, dob=owner.dob,
-                     gender=owner.gender, passport=owner.passport)
+    db_owner = Owner(firstName=owner.firstName, lastName=owner.lastName, email=owner.email.lower(),
+                     dob=datetime.strptime(owner.dob, "%Y-%m-%d"), gender=owner.gender, passport=owner.passport,
+                     qr_code=owner.qr_code)
     db.add(db_owner)
     db.commit()
     db.refresh(db_owner)

@@ -1,3 +1,5 @@
+from typing import Union
+
 from pydantic import BaseModel
 
 
@@ -10,7 +12,7 @@ class AdminBase(BaseModel):
 
 class AdminCreate(AdminBase):
     password: str
-    centre_id: int | None = None
+    centre_id: Union[int, None] = None
 
 
 class Admin(AdminBase):

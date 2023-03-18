@@ -8,6 +8,8 @@ from starlette import status
 from database.config import Base, engine, get_db
 from routers import admin, centre, vehicle, owner
 from repositories import admin as admin_repo
+from schemas.admin import Admin, AdminCreate
+
 from schemas.token import Token
 from utils.jwt_access import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token
 from utils.pwd_context import verify_password
@@ -19,7 +21,7 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {"message": "Hello World! Welcome to the Parking Lot API."}
+    return {"message": "Hello World! Welcome to the Secure Park API."}
 
 
 @app.post("/login", response_model=Token, tags=["Auth"])
@@ -42,6 +44,14 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(data={"sub": user.email}, expires_delta=access_token_expires)
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@app.post("/", response_model=Admin, status_code=status.HTTP_201_CREATED)
+def create_admin(admin_create: AdminCreate, db: Session = Depends(get_db)):
+    db_admin = admin_repo.find_admin_by_email(db, email=admin_create.email)
+    if db_admin:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email is in use")
+    return admin_repo.create_admin(db, admin_create)
 
 
 app.include_router(admin.router)
